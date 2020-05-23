@@ -15,8 +15,11 @@
         </div>
       </v-card-text>
       <v-card-text>
-        <v-form @submit.prevent="enviarMensaje"> 
-          <v-text-field v-model="mensaje" label="Escribe tu mensaje aqui"></v-text-field>
+        <v-form @submit.prevent="enviarMensaje" v-model="valido"> 
+          <v-text-field
+           v-model="mensaje" label="Escribe tu mensaje aqui"
+           required
+           :rules="reglas"></v-text-field>
         </v-form>
       </v-card-text>
     </v-card>
@@ -32,12 +35,21 @@ export default {
   },
   data(){
     return{
-      mensaje:''
+      mensaje:'',
+      valido:false,
+      reglas: [
+        v => !!v || 'Tienes que escribir un mensaje...'
+      ]
     }
   },
   methods:{
     enviarMensaje(){
-      console.log('Enviaste el mensaje: ', this.mensaje)
+      if(this.valido){
+        console.log('Enviaste el mensaje: ', this.mensaje)
+      }else{
+        console.log('No escribiste nada')
+      }
+      
     }
   }
 }
