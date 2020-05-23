@@ -29,6 +29,7 @@
 <script>
 // @ is an alias to /src
 
+
 export default {
   name: 'Home',
   components: {
@@ -46,6 +47,8 @@ export default {
     enviarMensaje(){
       if(this.valido){
         console.log('Enviaste el mensaje: ', this.mensaje)
+
+        this.mensaje=''
       }else{
         console.log('No escribiste nada')
       }
